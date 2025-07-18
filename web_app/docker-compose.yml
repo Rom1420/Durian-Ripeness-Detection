@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: durian-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    restart: always
+    networks:
+      - durian-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: durian-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - durian-net
+
+networks:
+  durian-net:
+    driver: bridge

@@ -1,0 +1,227 @@
+/* App.css */
+
+#root {
+  margin: 0;
+  width: 100%;
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body{
+  width: 100vw;
+}
+
+*{
+  overflow: hidden;
+}
+
+.app-container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 30% 15% 40%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.title {
+  margin-bottom: 40px;
+  color: #ecf3fff8;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.281);
+
+  transition: all 0.5s ease-in-out;
+}
+
+.title:hover{
+  filter: brightness(1.5);
+}
+
+.upload-box { 
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 30% 30% 30%;
+  width: 320px;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+}
+
+.file-label {
+  display: block;
+  padding: 15px 25px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  user-select: none;
+  width: 100%;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #16222A 0%, #2C5364  51%, #16222A  100%)}
+.btn-grad {
+  min-width: 120px;
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 5px #eeeeee53;
+   border: 1px solid #ffffff35;
+   border-radius: 10px;
+   display: block;
+   cursor: pointer;
+   font-weight: 600;
+ }
+
+ .btn-grad:hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.file-input {
+  display: none;
+}
+
+.submit-button {
+  background-color: #356980;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 10px;
+  padding: 15px 45px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 5px #eeeeee53;
+  border: 1px solid #ffffff35;
+  display: block;
+  width: auto;
+}
+
+.submit-button:hover:not(:disabled) {
+  filter: brightness(1.2);
+  border: 1px solid #ffffff35;
+}
+
+.submit-button:hover:disabled {
+  border: 1px solid #ffffff35;
+}
+
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+
+.upload-box.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.spinner {
+  margin-top: 15px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.result-image {
+  grid-row: 3;
+  height: 95%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000050;
+}
+
+.btn-grad.has-file {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-grad.has-file::after {
+  content: "Choose another image";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #16222A, #2C5364);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 10px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.btn-grad.has-file:hover::after {
+  opacity: 1;
+}
+
+.image-container{
+  height: 85%;
+  padding: 10px;
+}
+
+.prediction-highlight {
+  background-color: rgba(44, 83, 100, 0.2);
+  border: 2px solid #289fc6;;
+  border-radius: 12px;
+  padding: 12px 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 255, 255, 0.1);
+  color: #e0f7fa;
+  margin-top: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.prediction-highlight:hover {
+  transform: scale(1.02);
+  background-color: rgba(44, 83, 100, 0.4);
+}
+
+.prediction-highlight p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.prediction-highlight h2 {
+  margin: 10px 0 0 0;
+  font-size: 2rem;
+  color: #81e6d9;
+}
+
+.prediction-highlight strong {
+  color: #289fc6;
+}
+
+.prediction-highlight em {
+  color: #e2e8f0;
+  font-style: normal;
+  margin-left: 10px;
+}
