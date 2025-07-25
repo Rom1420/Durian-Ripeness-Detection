@@ -29,7 +29,7 @@ yolo task=segment mode=train model=yolov8m-seg.pt data=config.yaml epochs=100 im
 To run inference on a single image or folder:
 
 ```bash
-yolo task=segment mode=predict model=runs/segment/yolov8m-seg/weights/best.pt source=path/to/images/ conf=0.5 save=True
+yolo task=segment mode=predict model=path/to/model.pt source=path/to/images/ conf=0.5 save=True
 ```
 
 * `model` should point to your trained weights
