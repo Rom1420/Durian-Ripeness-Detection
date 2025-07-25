@@ -3,7 +3,6 @@ import "./App.css";
 
 export default function App() {
   const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -11,16 +10,6 @@ export default function App() {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
     setResult(null);
-
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
-    } else {
-      setPreview(null);
-    }
   };
 
   const handleSubmit = async () => {
@@ -32,7 +21,7 @@ export default function App() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8080/predict", {
+      const res = await fetch("/predict", {
         method: "POST",
         body: formData,
       });
@@ -77,19 +66,23 @@ export default function App() {
         {isLoading && <div className="spinner"></div>}
       </div>
 
-      {result?.cnn_prediction_on_original && (
+      {result?.cnn_prediction && (
         <div className="prediction-highlight">
           <p>Predicted maturity:</p>
           <h2>
-            <strong>{result.cnn_prediction_on_original.class}</strong>{" "}
-            <em>({result.cnn_prediction_on_original.confidence})</em>
+            <strong>{result.cnn_prediction.class}</strong>{" "}
+            <em>({result.cnn_prediction.confidence})</em>
           </h2>
         </div>
       )}
 
-      {result?.yolo_segmented_image && (
+      {result?.annotated_image && (
         <div className="image-container">
-          <img src={preview} alt="Preview" className="result-image" />
+          <img
+            src={`http://localhost:8080${result.annotated_image}`}
+            alt="CNN Result"
+            className="result-image"
+          />
         </div>
       )}
     </div>

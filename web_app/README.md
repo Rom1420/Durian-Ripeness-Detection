@@ -57,7 +57,7 @@ Durian_Ripeness_Detection/
 2. **Navigate to the root folder:**
 
 ```bash
-cd Durian_Ripeness_Detection
+cd Durian_Ripeness_Detection/web_app
 ```
 
 3. **Run Docker Compose**
